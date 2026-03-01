@@ -1,0 +1,507 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   ARES — Tactical Cyber Command Center Design System
+   Inspired by: CrowdStrike Falcon, Darktrace, Palo Alto Cortex,
+                IBM QRadar, Microsoft Defender, NATO cyber defense
+   ───────────────────────────────────────────────────────────── */
+
+@theme {
+  --color-ares-black: #0B0F14;
+  --color-ares-dark: #0F1419;
+  --color-ares-navy: #131B26;
+  --color-ares-navy-light: #1A2332;
+  --color-ares-slate: #1E293B;
+  --color-ares-border: #1E3A5F;
+  --color-ares-border-light: #2A4A6B;
+  --color-ares-text: #E2E8F0;
+  --color-ares-text-dim: #94A3B8;
+  --color-ares-text-muted: #64748B;
+  --color-ares-blue: #3B82F6;
+  --color-ares-blue-bright: #60A5FA;
+  --color-ares-cyan: #06B6D4;
+  --color-ares-red: #EF4444;
+  --color-ares-red-dark: #DC2626;
+  --color-ares-amber: #F59E0B;
+  --color-ares-green: #10B981;
+  --color-ares-purple: #8B5CF6;
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--color-ares-black);
+  color: var(--color-ares-text);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Tactical Grid Background ─────────────────────────────── */
+.tactical-grid {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ares-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ares-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ares-border-light);
+}
+
+/* ─── Glowing Elements ─────────────────────────────────────── */
+.glow-blue {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+.glow-red {
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3), 0 0 30px rgba(239, 68, 68, 0.15);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.2), 0 0 30px rgba(6, 182, 212, 0.1);
+}
+
+.glow-text-blue {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.glow-text-red {
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* ─── Panel Styles ─────────────────────────────────────────── */
+.panel {
+  background: linear-gradient(180deg, var(--color-ares-dark) 0%, var(--color-ares-navy) 100%);
+  border: 1px solid var(--color-ares-border);
+  border-radius: 6px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-ares-border);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ares-text-dim);
+}
+
+.panel-content {
+  padding: 12px 14px;
+  overflow-y: auto;
+}
+
+/* ─── Status Badge ─────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.status-operational {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10B981;
+}
+
+.status-critical {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+}
+
+.status-warning {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #F59E0B;
+}
+
+/* ─── Pulse Animation ──────────────────────────────────────── */
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes pulse-blue {
+  0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.pulse-red {
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+.pulse-blue {
+  animation: pulse-blue 3s ease-in-out infinite;
+}
+
+/* ─── Button Styles ────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 6px;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 6px;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+.btn-danger:hover {
+  background: linear-gradient(135deg, #F87171 0%, #EF4444 100%);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--color-ares-navy-light);
+  border: 1px solid var(--color-ares-border);
+  border-radius: 6px;
+  color: var(--color-ares-text-dim);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+.btn-secondary:hover {
+  background: var(--color-ares-slate);
+  border-color: var(--color-ares-border-light);
+  color: var(--color-ares-text);
+}
+
+/* ─── Form Controls ────────────────────────────────────────── */
+.control-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ares-text-dim);
+  margin-bottom: 6px;
+}
+
+.control-select {
+  width: 100%;
+  padding: 7px 10px;
+  background: var(--color-ares-navy);
+  border: 1px solid var(--color-ares-border);
+  border-radius: 4px;
+  color: var(--color-ares-text);
+  font-size: 0.8rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  appearance: none;
+}
+.control-select:focus {
+  outline: none;
+  border-color: var(--color-ares-blue);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.control-range {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--color-ares-border);
+  border-radius: 2px;
+  outline: none;
+}
+.control-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--color-ares-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+.control-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: var(--color-ares-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* ─── Risk Gauge ───────────────────────────────────────────── */
+.risk-gauge-container {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.risk-gauge-bg {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 6px solid var(--color-ares-border);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(225deg);
+  clip-path: inset(0 0 50% 0);
+}
+
+.risk-gauge-fill {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(225deg);
+  clip-path: inset(0 0 50% 0);
+  transition: all 1s ease-out;
+}
+
+.risk-gauge-value {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Metric Card ──────────────────────────────────────────── */
+.metric-card {
+  background: var(--color-ares-navy);
+  border: 1px solid var(--color-ares-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.metric-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ares-text-muted);
+  margin-top: 4px;
+}
+
+/* ─── React Flow Overrides ─────────────────────────────────── */
+.react-flow__background {
+  background: var(--color-ares-black) !important;
+}
+
+.react-flow__minimap {
+  background: var(--color-ares-dark) !important;
+  border: 1px solid var(--color-ares-border) !important;
+  border-radius: 4px !important;
+}
+
+.react-flow__controls {
+  border: 1px solid var(--color-ares-border) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+
+.react-flow__controls-button {
+  background: var(--color-ares-dark) !important;
+  border-bottom: 1px solid var(--color-ares-border) !important;
+  fill: var(--color-ares-text-dim) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--color-ares-navy-light) !important;
+}
+
+/* ─── Timeline Scrubber ────────────────────────────────────── */
+.timeline-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: var(--color-ares-dark);
+  border-top: 1px solid var(--color-ares-border);
+}
+
+.timeline-track {
+  flex: 1;
+  height: 3px;
+  background: var(--color-ares-border);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+.timeline-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-ares-blue), var(--color-ares-cyan));
+  transition: width 0.3s ease;
+}
+
+.timeline-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-ares-blue);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  cursor: grab;
+}
+
+.timeline-step-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-ares-text-dim);
+  min-width: 60px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Attack Path Item ─────────────────────────────────────── */
+.attack-path-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--color-ares-navy);
+  border: 1px solid var(--color-ares-border);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  margin-bottom: 4px;
+  transition: border-color 0.2s;
+}
+.attack-path-item:hover {
+  border-color: var(--color-ares-blue);
+}
+
+/* ─── Node State Colors ────────────────────────────────────── */
+.node-safe { color: #3B82F6; }
+.node-vulnerable { color: #F59E0B; }
+.node-compromised { color: #EF4444; }
+
+/* ─── Loading Spinner ──────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-ares-border);
+  border-top-color: var(--color-ares-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ─── Defense Card ─────────────────────────────────────────── */
+.defense-card {
+  padding: 10px 12px;
+  background: var(--color-ares-navy);
+  border: 1px solid var(--color-ares-border);
+  border-left: 3px solid var(--color-ares-blue);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 6px;
+}
+.defense-card.priority-high {
+  border-left-color: var(--color-ares-red);
+}
+.defense-card.priority-medium {
+  border-left-color: var(--color-ares-amber);
+}
+.defense-card.priority-low {
+  border-left-color: var(--color-ares-green);
+}
