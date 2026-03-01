@@ -1,0 +1,11 @@
+SETUP_GUIDE.md
+SUBMISSION_DECK.md
+DEMO_SCRIPT.md
+SLIDE_DECK_CONTENT.md
+node_modules/
+.env
+dist/
+build/
+.DS_Store
+__pycache__/
+*.pyc

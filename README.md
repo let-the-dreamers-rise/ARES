@@ -141,11 +141,7 @@ ARES/
 │           ├── RightIntelPanel.jsx # Simulation metrics, top nodes, clusters, attack paths
 │           └── BottomCommandPanel.jsx # Defense recommendations with cost estimates
 │
-├── README.md
-├── SETUP_GUIDE.md                  # Quick setup for new machines
-├── SUBMISSION_DECK.md              # Hackathon submission content
-├── DEMO_SCRIPT.md                  # 3-minute demo video script
-└── SLIDE_DECK_CONTENT.md           # 12-slide presentation content
+└── README.md
 ```
 
 ---
