@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="frontend/public/ares.svg" width="80" height="80" alt="ARES Logo" />
-</p>
 
 <h1 align="center">ARES</h1>
 <h3 align="center">Adversarial Risk & Exploitation Simulator</h3>
@@ -304,13 +301,3 @@ Phase 4:            Distributed multi-GPU across AMD Instinct cluster
 | Charts | Recharts | 2.15 |
 
 ---
-
-## 📄 License
-
-Prototype — Research & Educational Use
-
----
-
-<p align="center">
-  <strong>🛡 ARES — Don't detect attacks. Predict them.</strong>
-</p>
